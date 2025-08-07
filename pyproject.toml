@@ -1,0 +1,12 @@
+[project]
+name = "hoff"
+version = "0.1.0"
+description = "hoff BOT"
+requires-python = ">=3.11"
+dependencies = [
+    "aiogram>=3.21.0",
+    "alembic>=1.16.4",
+    "asyncpg>=0.30.0",
+    "python-decouple>=3.8",
+    "redis>=6.3.0",
+]
