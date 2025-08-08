@@ -19,31 +19,20 @@ end_test_btn.row(
 end_test_btn = end_test_btn.as_markup()
 
 
-def get_test_btn(number_test: int) -> InlineKeyboardMarkup:
+def get_test_btn(number_test: int, count_btn: int = 4) -> InlineKeyboardMarkup:
     btn = InlineKeyboardBuilder()
-    btn.row(
-        types.InlineKeyboardButton(
-            text="1",
-            callback_data=f"test_{number_test}_1"
+    row = []
+
+    for i in range(1, count_btn + 1):
+        row.append(
+            types.InlineKeyboardButton(
+                text=f"{i}",
+                callback_data=f"test_{number_test}_{i}"
+            )
         )
-    )
-    btn.row(
-        types.InlineKeyboardButton(
-            text="2",
-            callback_data=f"test_{number_test}_2"
-        )
-    )
-    btn.row(
-        types.InlineKeyboardButton(
-            text="3",
-            callback_data=f"test_{number_test}_3"
-        )
-    )
-    btn.row(
-        types.InlineKeyboardButton(
-            text="4",
-            callback_data=f"test_{number_test}_4"
-        )
-    )
-    btn = btn.as_markup()
-    return btn
+        if len(row) == 4:
+            btn.row(*row)
+            row = []
+
+    return btn.as_markup()
+

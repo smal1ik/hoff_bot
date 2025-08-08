@@ -22,11 +22,4 @@ async def cmd_message(message: types.Message, state: FSMContext, bot: Bot):
         # TODO: Логика для уже зарегистрированных пользователей
         pass
 
-    await message.answer(cp.start_msg, parse_mode="HTML", reply_markup=kb.start_btn)
-
-
-@main_handler.callback_query(F.data == 'start')
-async def answer_message(callback: types.CallbackQuery, state: FSMContext):
-    await callback.message.answer(cp.terms_msg, parse_mode="HTML",
-                                  reply_markup=kb.accept_terms_btn,
-                                  disable_web_page_preview=True)
+    await message.answer(cp.terms_msg, parse_mode="HTML", reply_markup=kb.accept_terms_btn, disable_web_page_preview=True)

@@ -108,7 +108,7 @@ async def answer_message(callback: types.CallbackQuery, state: FSMContext):
     await state.update_data({"answers": data})
     await callback.message.answer_photo(
         photo=FSInputFile(Path(GLOBAL_PATH + "/assets/images/8.png")),
-        reply_markup=kb.get_test_btn(8)
+        reply_markup=kb.get_test_btn(8, 8)
     )
 
 
