@@ -150,3 +150,9 @@ async def answer_message(callback: types.CallbackQuery, state: FSMContext):
 async def answer_message(callback: types.CallbackQuery, state: FSMContext):
     is_liked = bool(int(callback.data.split("_")[1]))
     await edit_liked_test(callback.from_user.id, is_liked)
+    if is_liked:
+        await callback.message.answer("""Ваш ответ учтён ✅ 
+Мы напишем, как только появится новый тест!""")
+    else:
+        await callback.message.answer("""Спасибо за отклик! Жаль, что тест не понравился 💔 
+Поделитесь в чате, что именно не устроило, чтобы мы могли стать лучше 🙏🏻""")
