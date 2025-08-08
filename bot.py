@@ -7,6 +7,7 @@ from aiogram.fsm.storage.redis import RedisStorage
 
 from decouple import config
 
+from app.handlers.admin_handler import admin_handler
 from app.handlers.test_handler import test_handler
 from app.handlers.main_handler import main_handler
 
@@ -17,6 +18,7 @@ async def main():
     dp = Dispatcher(storage=RedisStorage.from_url(config('REDIS_URL')))
     dp.include_router(main_handler)
     dp.include_router(test_handler)
+    dp.include_router(admin_handler)
     await dp.start_polling(bot, polling_timeout=100)
 
 if __name__ == "__main__":

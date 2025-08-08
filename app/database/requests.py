@@ -43,3 +43,10 @@ async def edit_liked_test(tg_id: BigInteger, liked: bool):
     async with async_session() as session:
         await session.execute(update(User).where(User.tg_id == tg_id).values(liked_test=liked))
         await session.commit()
+
+
+async def get_all_users() -> List[User]:
+    async with async_session() as session:
+        result = await session.execute(select(User).where(User.answer_test.isnot(None)))
+        return result.scalars().all()
+
